@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nozzle 品类研究｜GardenScope 前置功课</title>
+  <style>
+    :root {
+      --ink: #17342e;
+      --muted: #64736e;
+      --paper: #f7f5ef;
+      --card: #fffdfa;
+      --line: #dce3dc;
+      --green: #176b56;
+      --green-soft: #e5f2ec;
+      --blue: #0f6f89;
+      --blue-soft: #e6f3f7;
+      --orange: #b95e22;
+      --orange-soft: #fff0e5;
+      --plum: #723e64;
+      --plum-soft: #f7eaf2;
+      --shadow: 0 10px 24px rgba(28, 53, 43, .07);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; line-height: 1.65; }
+    a { color: #096f85; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    a:hover { color: #0a4f63; }
+    .wrap { width: min(1180px, calc(100% - 36px)); margin: 0 auto; }
+    header { color: #fff; background: radial-gradient(circle at 78% 10%, #68ac82 0, rgba(104,172,130,0) 30%), linear-gradient(120deg, #133d35, #135b48 56%, #11667b); padding: 58px 0 50px; }
+    .eyebrow { display: inline-block; letter-spacing: .12em; text-transform: uppercase; color: #d2f2df; font-size: 12px; font-weight: 800; }
+    h1 { max-width: 800px; margin: 12px 0 12px; font-size: clamp(32px, 5vw, 54px); line-height: 1.13; letter-spacing: -.035em; }
+    .lead { max-width: 790px; margin: 0; font-size: 18px; color: #e4f4ec; }
+    .meta { margin-top: 22px; color: #c5dfd2; font-size: 13px; }
+    nav { position: sticky; top: 0; z-index: 10; background: rgba(255,253,250,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+    nav .wrap { display: flex; gap: 18px; overflow-x: auto; padding: 10px 0; white-space: nowrap; }
+    nav a { color: #436057; text-decoration: none; font-size: 13px; font-weight: 750; }
+    section { padding: 38px 0 0; }
+    h2 { font-size: 27px; letter-spacing: -.025em; margin: 0 0 10px; line-height: 1.25; }
+    h3 { font-size: 18px; letter-spacing: -.01em; margin: 0 0 8px; line-height: 1.35; }
+    p { margin: 8px 0 12px; }
+    .sub { max-width: 880px; color: var(--muted); margin: 0 0 20px; }
+    .grid { display: grid; gap: 16px; }
+    .grid.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px; box-shadow: var(--shadow); }
+    .metric { min-height: 142px; }
+    .metric .num { display: block; margin: 3px 0 2px; font-size: 38px; font-weight: 850; letter-spacing: -.05em; line-height: 1.08; }
+    .metric .tag { color: var(--green); font-size: 12px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+    .metric p { color: var(--muted); font-size: 14px; line-height: 1.48; }
+    .callout { border-left: 5px solid var(--green); background: var(--green-soft); border-radius: 10px; padding: 17px 19px; }
+    .callout strong { color: #0f5041; }
+    .callout.orange { border-left-color: var(--orange); background: var(--orange-soft); }
+    .callout.plum { border-left-color: var(--plum); background: var(--plum-soft); }
+    .chip { display: inline-block; padding: 3px 8px; border-radius: 999px; font-size: 12px; line-height: 1.35; font-weight: 800; background: #eef2ee; color: #47615a; }
+    .chip.green { background: var(--green-soft); color: #19614e; }
+    .chip.orange { background: var(--orange-soft); color: #9a4d1b; }
+    .chip.plum { background: var(--plum-soft); color: #6d365c; }
+    .table-wrap { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); }
+    table { width: 100%; min-width: 900px; border-collapse: collapse; font-size: 13px; }
+    caption { text-align: left; padding: 18px 18px 8px; color: var(--muted); font-size: 13px; }
+    th { background: #edf3ef; color: #38554c; font-size: 12px; letter-spacing: .04em; text-transform: uppercase; text-align: left; white-space: nowrap; }
+    th, td { padding: 12px 14px; border-bottom: 1px solid #e8ede9; vertical-align: top; }
+    tr:last-child td { border-bottom: 0; }
+    td strong { color: #173e35; }
+    .small { color: var(--muted); font-size: 12px; }
+    .bars { display: grid; gap: 12px; }
+    .bar-row { display: grid; grid-template-columns: 146px 1fr 95px; gap: 12px; align-items: center; font-size: 13px; }
+    .track { height: 14px; overflow: hidden; border-radius: 99px; background: #e9efeb; }
+    .fill { height: 100%; border-radius: inherit; background: linear-gradient(90deg, #2a8c68, #74bd86); }
+    .fill.blue { background: linear-gradient(90deg, #147596, #7ebed0); }
+    .fill.orange { background: linear-gradient(90deg, #c46a29, #ecaa60); }
+    .note { color: var(--muted); font-size: 12px; }
+    .archetype { position: relative; overflow: hidden; min-height: 245px; }
+    .archetype::before { content: ""; position: absolute; right: -45px; top: -45px; width: 140px; height: 140px; border-radius: 50%; background: var(--green-soft); }
+    .archetype.blue::before { background: var(--blue-soft); }
+    .archetype.orange::before { background: var(--orange-soft); }
+    .archetype h3, .archetype p, .archetype ul { position: relative; }
+    ul { padding-left: 20px; margin: 9px 0; }
+    li { margin: 5px 0; }
+    .review { border-top: 4px solid var(--line); }
+    .review.good { border-top-color: #4b9c73; }
+    .review.watch { border-top-color: #dc8d49; }
+    .quote { color: #3f5d54; font-size: 14px; }
+    .decision { display: grid; grid-template-columns: 56px 1fr; gap: 14px; align-items: start; }
+    .decision .n { width: 42px; height: 42px; border-radius: 50%; background: var(--plum-soft); color: var(--plum); display: grid; place-items: center; font-weight: 850; }
+    .matrix { display: grid; grid-template-columns: 1.05fr 1.25fr 1.25fr; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--card); box-shadow: var(--shadow); }
+    .matrix > div { padding: 16px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .matrix > div:nth-child(3n) { border-right: 0; }
+    .matrix > div:nth-last-child(-n+3) { border-bottom: 0; }
+    .matrix .head { background: #edf3ef; color: #38554c; font-size: 12px; font-weight: 850; letter-spacing: .06em; text-transform: uppercase; }
+    .matrix .topic { font-weight: 800; color: #22463c; }
+    footer { margin-top: 42px; padding: 28px 0 44px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+    @media (max-width: 860px) {
+      .grid.four, .grid.three { grid-template-columns: 1fr 1fr; }
+      .grid.two { grid-template-columns: 1fr; }
+      .matrix { grid-template-columns: .85fr 1.15fr 1.15fr; font-size: 13px; }
+    }
+    @media (max-width: 560px) {
+      header { padding: 44px 0 38px; }
+      .wrap { width: min(100% - 24px, 1180px); }
+      .grid.four, .grid.three { grid-template-columns: 1fr; }
+      .bar-row { grid-template-columns: 112px 1fr 64px; gap: 8px; }
+      .matrix { display: block; }
+      .matrix > div { border-right: 0; }
+      .matrix .head { display: none; }
+      .matrix .topic { background: #edf3ef; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <span class="eyebrow">Category learning · GardenScope pre-work</span>
+      <h1>花园水枪 Nozzle：先看懂货架，再定义 GardenScope</h1>
+      <p class="lead">一份面向非品类专家的入门研究。它从源表的 Lowe’s 与 Home Depot 全部 Nozzle SKU 出发，解释市场正在卖什么、消费者真正期待什么，以及 GardenScope 如何在成熟的 $8–$20 水枪货架中建立不只是“更多模式”的价值。</p>
+      <p class="meta">研究日期：2026-08-31 · 市场：美国 · 样本渠道：Lowe’s · 外部页面价格/评价为抓取当日快照</p>
+    </div>
+  </header>
+
+  <nav><div class="wrap">
+    <a href="#answer">先说结论</a><a href="#primer">品类入门</a><a href="#types">类型地图</a><a href="#sku">24 款合并 SKU</a><a href="#market">产品结构</a><a href="#consumers">消费者期待</a><a href="#scope">GardenScope 启发</a><a href="#sources">来源与边界</a>
+  </div></nav>
+
+  <main class="wrap">
+    <section id="answer">
+      <h2>先说结论</h2>
+      <p class="sub">这个品类的本质不是“喷水头数量的竞赛”，而是一个高频、低客单、极容易被漏水和手感毁掉的日常工具。多模式已是标配，可靠浇水才是入场券。</p>
+      <div class="grid four">
+        <article class="card metric"><span class="tag">源表已确认</span><span class="num">24 款</span><p>当前合并样本包括 Lowe’s <strong>10 款</strong>和 Home Depot <strong>14 款</strong>。Lowe’s 的 20 个搜索命中原本是 10 款 SKU 的双字段命中。</p></article>
+        <article class="card metric"><span class="tag">样本构成</span><span class="num">10 + 14</span><p>10 款 Lowe’s 与 14 款 Home Depot 已合并为同一产品池；渠道仅作为 SKU 标签，不再决定报告的阅读顺序。</p></article>
+        <article class="card metric"><span class="tag">样本价格带</span><span class="num">$7.98–19.98</span><p>合并样本中位价仍为 <strong>$12.98</strong>。14/24 是明确多模式款；模式数量已趋同，不能独自撑起溢价。</p></article>
+        <article class="card metric"><span class="tag">对 GardenScope</span><span class="num">$69</span><p>内部概念目标价远高于常规 Nozzle；必须让用户在几秒内看懂“浇水也留下植物记录”的新增价值。</p></article>
+      </div>
+      <div class="callout" style="margin-top:18px"><strong>一句话判断：</strong>GardenScope 必须先成为一把让人愿意每天用的好水枪，再成为一个值得被理解的视觉养护入口。若喷射、密封、握持和模式切换做不好，摄像头和 AI 叙事不会弥补基础体验。</div>
+    </section>
+
+    <section id="primer">
+      <h2>品类入门：Nozzle 到底是什么？</h2>
+      <p class="sub">美国零售页通常称为 <em>garden hose nozzle</em> 或 <em>spray gun</em>。它安装在花园软管末端，将来水转成不同的水型，并在手柄处控制开关和流量。它同时服务两类任务：温和浇灌植物，以及高压清洁庭院、车辆或工具。</p>
+      <div class="grid three">
+        <article class="card archetype"><span class="chip green">水型（pattern）</span><h3>把“水”匹配给任务</h3><ul><li><strong>细雾 / soft spray：</strong>幼苗、脆弱花叶，减少冲刷。</li><li><strong>shower / full / cone：</strong>花坛、菜园、容器植物的日常浇灌。</li><li><strong>flat / jet：</strong>车、露台、工具的冲洗；不是用于娇嫩植物。</li></ul></article>
+        <article class="card archetype blue"><span class="chip">操控（control）</span><h3>关水、调流量、减少手累</h3><ul><li><strong>后扳机：</strong>熟悉、力度直观，可配置锁扣。</li><li><strong>拇指推杆：</strong>一手连续调流，少反复捏扳机。</li><li><strong>前扳机：</strong>手指发力加锁定，常以“降低疲劳”卖点出现。</li></ul></article>
+        <article class="card archetype orange"><span class="chip orange">耐用（durability）</span><h3>用户最容易感知的底线</h3><ul><li>锌合金 / 金属主体抵抗跌落、日晒与磨损。</li><li>TPR 或软胶握把隔热、防滑、提升湿手握持。</li><li>密封圈、旋钮、接口和转盘是漏水、卡滞和寿命的高风险点。</li></ul></article>
+      </div>
+      <p class="note">常见 3/4 英寸软管接口与 5/8 英寸软管兼容表述在零售页中并存；个别页面规格也有明显异常。对新产品而言，接口、流量和耐压应以实物/工程规范验证，不应只沿用电商字段。</p>
+    </section>
+
+    <section id="types">
+      <h2>类型地图：短喷枪、短杆、长杆，到底差在哪？</h2>
+      <p class="sub">你印象中的长杆产品是对的。在美国零售中，<strong>Nozzle</strong>（短喷枪）与 <strong>Wand</strong>（带杆喷枪/浇水杆）通常放在同一个 “Garden Hose Nozzles &amp; Wands” 子类，但它们解决的是不同的<strong>距离、角度和植物脆弱度</strong>问题。合并后的 24 款源表样本中有 22 款短 Nozzle、2 款 Melnor 浇水杆；这两种形态要被放进同一个产品决策里看。以下是需要纳入 GardenScope 研究的完整类型结构。</p>
+      <div class="callout"><strong>先记住一个判断：</strong>“短/长”不是装饰差异。杆越长，越能避开弯腰、伸手和高处吊篮；但也越重、越容易在接头处受力、越难收纳。喷头是“喷水方式”，杆是“把水送到哪里”的姿态工具。</div>
+      <div class="table-wrap" style="margin-top:18px">
+        <table>
+          <caption>典型长度为零售常见范围，不是统一行业标准。长度从握把前端到喷头附近的有效杆体估算；不同品牌标法会有差异。</caption>
+          <thead><tr><th>产品类型</th><th>典型长度</th><th>出水 / 控制结构</th><th>最适合的情境</th><th>不适合 / 主要取舍</th></tr></thead>
+          <tbody>
+            <tr><td><strong>短柄多模式 Nozzle</strong><br><span class="small">常见 “spray gun / pattern nozzle”</span></td><td>约 5–7 in</td><td>旋转模式盘；后扳机、前扳机或拇指推杆。通常 5、7、8、9 模式。</td><td>花坛、草坪、洗车、露台；一把覆盖浇灌和清洁，是最大众的通用款。</td><td>面对高处吊篮、深花坛、低矮盆栽时，人需要弯腰、抬手或把身体探进去；水型离植物太近时也更容易冲土。</td></tr>
+            <tr><td><strong>短杆花洒 Wand</strong><br><span class="small">Compact / shower wand</span></td><td>约 12–18 in</td><td>杆前端常为密孔 shower head（水幕/雨淋），也可带模式盘；常配拇指控流。</td><td>阳台盆栽、门廊吊篮、窄缝、育苗区。比短枪多出一臂距离，仍轻巧好操控。</td><td>清洁能力通常弱于短枪的 jet；密孔喷头需要防堵/可清洁设计。过长会让小面积作业笨重。</td></tr>
+            <tr><td><strong>长杆花洒 Wand</strong><br><span class="small">Long-reach rain wand</span></td><td>约 24–36 in</td><td>多为弯头 + 雨淋头，可配 1 个柔和水型或 7/8 模式；轻量铝杆、锁定或拇指阀常见。</td><td>高处吊篮、深菜畦、灌木内侧、低处花坛；重点是<strong>精准、温和、少弯腰</strong>。</td><td>杆身带来更大力矩，接头、转向头和管体是可靠性风险；直喷清洁、车洗和狭小空间的灵活性较差。</td></tr>
+            <tr><td><strong>伸缩 / 超长 Wand</strong><br><span class="small">Telescoping / swivel-head wand</span></td><td>约 36–53 in</td><td>伸缩杆 + 180° 可转头 + 多模式盘较常见；需兼顾重心、锁紧与湿手操作。</td><td>窗台花箱、高吊植物、围栏后方、很深的床边；用户不想爬高、弯腰或踩进花坛。</td><td>最重、收纳最长、挠度和接头寿命挑战最大。不能简单按“越长越好”选型，家庭小院常嫌它笨重。</td></tr>
+            <tr><td><strong>特殊任务头</strong><br><span class="small">Fireman / jet / gutter / cleaning</span></td><td>短枪或带弯头杆</td><td>大扳机高流量、可调直射，或为檐沟/屋檐角度设计的弯头；重视冲力和指向。</td><td>洗车、冲露台、填桶、远端檐沟等；不是以保护花朵为第一目标。</td><td>水柱可能伤叶、冲走土；与“精细养护 / 采集植物画面”的逻辑不同，通常不应当作 GardenScope 的首要场景。</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid three" style="margin-top:18px">
+        <article class="card archetype"><span class="chip green">例：短杆 15 in</span><h3>不是“迷你长杆”，而是近距离精细浇灌</h3><p><a href="https://www.lowes.com/pd/Project-Source-Gentle-Rain-Watering-Wand/5016370139" target="_blank" rel="noreferrer">Project Source 15-Inch Ultra-Fine Wand</a> 用 1,004 个精密孔形成柔和雨淋，面向脆弱花朵、新播种区域、吊篮与紧凑空间；拇指控流降低手腕负担。</p><p class="note">选它的理由是“更精细、更够得着”，不是要更强的冲洗力。</p></article>
+        <article class="card archetype blue"><span class="chip">例：长杆 30–33 in</span><h3>把水送到高处或深处，避免弯腰</h3><p><a href="https://www.lowes.com/pd/DRAMM-14805-Rain-Wand-30-in-One-Touch-Thumb-Valve-Blue/8870297" target="_blank" rel="noreferrer">DRAMM 30-Inch Rain Wand</a> 和 <a href="https://www.lowes.com/pd/Melnor-RelaxGrip-8-Pattern-Pattern-Wand/1000733980" target="_blank" rel="noreferrer">Melnor 33-Inch RelaxGrip</a> 都直接把吊篮、深床和减轻弯腰/手腕压力作为核心场景；前者强调柔和雨淋，后者则保留 8 模式和强 jet。</p><p class="note">同样是长杆，水型可以“专为花”或“花园+清洁通用”，不能只按长度看。</p></article>
+        <article class="card archetype orange"><span class="chip orange">例：超长 36–53 in</span><h3>长度之外，还要“看得见角度”</h3><p><a href="https://www.lowes.com/pd/AQUA-JOE-Telescoping-Watering-Wand-36-53-inch-Extendable-10-Spray-Patterns/5012956649" target="_blank" rel="noreferrer">Aqua Joe 36–53-Inch Telescoping Wand</a> 用伸缩、180° 转头和 10 种水型解决窗台、高吊与低矮区域。长杆的价值是无需勉强伸手也能把水对准目标。</p><p class="note">其代价是重心、长度、可转头密封和伸缩锁紧都必须经受长期使用。</p></article>
+      </div>
+
+      <div class="grid two" style="margin-top:18px">
+        <article class="card"><h3>按场景选形态：一个简单速记</h3><ul><li><strong>洗车 / 冲露台 / 普通草坪：</strong>优先短柄 Nozzle，重点是 jet、流量和快速切模式。</li><li><strong>盆栽、幼苗、门廊吊篮：</strong>优先 12–18 in 短杆 shower wand，柔和水幕 + 轻量最重要。</li><li><strong>吊篮、深菜畦、灌木内部：</strong>优先 24–36 in 长杆，优先弯头/可转喷头和连续控流。</li><li><strong>窗台花箱、很高 / 很低的地方：</strong>再考虑伸缩杆；先确认家庭是否真的有这类高频任务。</li></ul></article>
+        <article class="card"><h3>用户对长杆的额外期待</h3><ul><li><strong>头部角度准：</strong>可以 over / under / around 植物，而不是把水喷在叶面外。</li><li><strong>水很柔：</strong>密孔 shower head 或 water breaker 让水像雨，避免冲散土和伤花。</li><li><strong>一手不累：</strong>长杆的力矩更大，需要轻杆、舒适握把、流量锁定或拇指控制。</li><li><strong>不堵、不漏、不折：</strong>长杆多了喷头、杆体和转向关节，维护和结构可靠性比短枪更关键。</li></ul></article>
+      </div>
+    </section>
+
+    <section id="sku">
+      <h2>把 24 款 SKU 放在一张图里看</h2>
+      <p class="sub">不要先问“Lowe’s 卖什么、Home Depot 卖什么”，而应先问：<strong>消费者面对的水枪货架，到底有哪些可替代方案？</strong>下表将飞书中的全部 24 款 SKU 按产品任务归类，而非按渠道分段；渠道只是每款的来源标签。这样才能直接看清“多模式短枪”“简单耐用/清洁枪”“长杆浇灌”三种竞争逻辑。</p>
+      <div class="table-wrap">
+        <table>
+          <caption>价格来自飞书源表。Lowe’s 的“销量分档”与 Home Depot 的“评价量 / Best Seller”是不同信号，不能横向换算为销量；它们仅用于帮助识别值得重点看的 SKU。</caption>
+          <thead><tr><th>#</th><th>产品任务 / SKU</th><th>渠道</th><th>源表价</th><th>操控与水型</th><th>关键货架信号</th></tr></thead>
+          <tbody>
+            <tr><td colspan="6" style="background:#e9f6ee;color:#165b3b;font-weight:800">A. 短柄多模式：用一把枪覆盖浇花、草坪、洗车、冲地（12 款）</td></tr>
+            <tr><td>1</td><td><strong>Project Source</strong><br><a href="https://www.lowes.com/pd/Project-Source-Project-Source-7-Pattern-Rear-Trigger-Nozzle/5016333181" target="_blank" rel="noreferrer">7-Pattern Rear Trigger</a></td><td>Lowe’s</td><td>$7.98</td><td>7 模式 · 后扳机</td><td><span class="chip green">10K+</span> 低价基础多模式标杆</td></tr>
+            <tr><td>2</td><td><strong>Orbit</strong><br><a href="https://www.lowes.com/pd/Orbit-7-Pattern-Rear-Trigger-Lever-Zinc-Nozzle-with-Adjustable-Spray-Garden-Hose-Nozzles-Wands/1000168319" target="_blank" rel="noreferrer">7-Pattern Thumb Control</a></td><td>Lowe’s</td><td>$9.98</td><td>7 模式 · 拇指推杆 · 锌</td><td><span class="chip green">1K+</span> 品牌低价多模式</td></tr>
+            <tr><td>3</td><td><strong>Project Source</strong><br><a href="https://www.lowes.com/pd/Project-Source-Project-Source-7-Pattern-Thumb-control-Trigger-Nozzle/5016333179" target="_blank" rel="noreferrer">7-Pattern Thumb Control</a></td><td>Lowe’s</td><td>$9.98</td><td>7 模式 · 拇指推杆</td><td><span class="chip green">5K+</span> 源表描述与页面模式数待实物核验</td></tr>
+            <tr><td>4</td><td><strong>Kobalt</strong><br><a href="https://www.lowes.com/pd/Kobalt-5-Pattern-Nozzle/5015241083" target="_blank" rel="noreferrer">5-Pattern Rear Trigger</a></td><td>Lowe’s</td><td>$12.98</td><td>5 模式 · 后扳机 · 锌</td><td><span class="chip green">1K+</span> 中价耐用路线</td></tr>
+            <tr><td>5</td><td><strong>Melnor</strong><br><a href="https://www.homedepot.com/p/Melnor-Rear-Trigger-8-Pattern-Adjustable-Nozzle-471-173/100659504" target="_blank" rel="noreferrer">Rear Trigger 8-Pattern</a></td><td>Home Depot</td><td>$12.98</td><td>8 模式 · 后扳机</td><td>门店款；典型大众多模式</td></tr>
+            <tr><td>6</td><td><strong>Melnor</strong><br><a href="https://www.homedepot.com/p/Melnor-Thumb-Control-8-Pattern-Nozzle-160-442/203062312" target="_blank" rel="noreferrer">Thumb Control 8-Pattern</a></td><td>Home Depot</td><td>$12.98</td><td>8 模式 · 拇指控制</td><td>门店款；把模式与单手控流组合</td></tr>
+            <tr><td>7</td><td><strong>Husky</strong><br><a href="https://www.homedepot.com/p/Husky-PRO-Thumb-Control-Multi-Pattern-Nozzle-622043/325874061" target="_blank" rel="noreferrer">PRO Thumb Control Multi-Pattern</a></td><td>Home Depot</td><td>$14.98</td><td>5 模式 · 拇指控制</td><td>PRO 平台；高流量、橡胶握把；1,711 条评价</td></tr>
+            <tr><td>8</td><td><strong>Husky</strong><br><a href="https://www.homedepot.com/p/Husky-PRO-Rear-Trigger-Multi-Pattern-Nozzle-622046/325874044" target="_blank" rel="noreferrer">PRO Rear Trigger Multi-Pattern</a></td><td>Home Depot</td><td>$14.98</td><td>多模式 · 后扳机</td><td>同一 PRO 平台以不同操控方式分层</td></tr>
+            <tr><td>9</td><td><strong>Project Source</strong><br><a href="https://www.lowes.com/pd/Project-Source-Project-Source-8-Pattern-Front-Trigger-Nozzle/5016220315" target="_blank" rel="noreferrer">8-Pattern Front Trigger</a></td><td>Lowe’s</td><td>$15.98</td><td>8 模式 · 前扳机 · 锁定</td><td><span class="chip green">5K+</span> 前扳机也能成为高量选择</td></tr>
+            <tr><td>10</td><td><strong>Orbit</strong><br><a href="https://www.lowes.com/pd/Orbit-Max-8-Pattern-Nozzle/1000188693" target="_blank" rel="noreferrer">Max 8-Pattern Thumb Control</a></td><td>Lowe’s</td><td>$17.98</td><td>8 模式 · 拇指推杆</td><td>源表 Best Seller；金属 / 橡胶 / 单手控流</td></tr>
+            <tr><td>11</td><td><strong>Orbit</strong><br><a href="https://www.lowes.com/pd/Orbit-7-Pattern-Fireman-s-Nozzle/1002613212" target="_blank" rel="noreferrer">7-Pattern Fireman’s</a></td><td>Lowe’s</td><td>$19.98</td><td>7 模式 · 大扳机</td><td>高价 Fireman’s；是可靠性风险反例</td></tr>
+            <tr><td>12</td><td><strong>Husky</strong><br><a href="https://www.homedepot.com/p/Husky-PRO-Fireman-s-Multi-Pattern-Nozzle-622045/325874050" target="_blank" rel="noreferrer">PRO Fireman’s Multi-Pattern</a></td><td>Home Depot</td><td>$19.98</td><td>5 模式 · Fireman’s</td><td>金属芯 + 抗冲击橡胶；993 条评价</td></tr>
+            <tr><td colspan="6" style="background:#eef3ff;color:#234a8d;font-weight:800">B. 短柄单水型 / 可调 / 清洁：优先强水流、耐用、简单（10 款）</td></tr>
+            <tr><td>13</td><td><strong>Project Source</strong><br><a href="https://www.lowes.com/pd/Project-Source-Pistol-Nozzle/50328313" target="_blank" rel="noreferrer">1-Pattern Rear Trigger Pistol</a></td><td>Lowe’s</td><td>$7.98</td><td>单水型可调 · 后扳机</td><td><span class="chip green">5K+</span> “少模式也能卖”的强信号</td></tr>
+            <tr><td>14</td><td><strong>Anvil</strong><br><a href="https://www.homedepot.com/p/Anvil-Rear-Trigger-Metal-Cleaning-Nozzle-875302-1006/326400065" target="_blank" rel="noreferrer">Rear Trigger Metal Cleaning</a></td><td>Home Depot</td><td>$7.98</td><td>金属 · 后扳机 · 调流量</td><td>前端螺纹接清洁附件；699 条评价</td></tr>
+            <tr><td>15</td><td><strong>Anvil</strong><br><a href="https://www.homedepot.com/p/Anvil-Hi-Visibility-Nozzle-10501HD/326012655" target="_blank" rel="noreferrer">Hi-Visibility Adjustable</a></td><td>Home Depot</td><td>$7.98</td><td>高可见度 · 可调喷雾</td><td>入门价以简单选择与可见性切入</td></tr>
+            <tr><td>16</td><td><strong>Husky</strong><br><a href="https://www.homedepot.com/p/Husky-Husky-5-in-Brass-Twist-Nozzle-25111HD/338310738" target="_blank" rel="noreferrer">5 in. Brass Twist</a></td><td>Home Depot</td><td>$8.98</td><td>黄铜旋转 · 可调</td><td>小尺寸、机械耐用、清洁需求</td></tr>
+            <tr><td>17</td><td><strong>Husky</strong><br><a href="https://www.homedepot.com/p/Husky-Industrial-Pistol-Nozzle-10502HD/326012644" target="_blank" rel="noreferrer">Industrial Pistol</a></td><td>Home Depot</td><td>$10.98</td><td>工业手枪式 · 锁定</td><td>隔热握把、最高 160°F 热水；538 条评价</td></tr>
+            <tr><td>18</td><td><strong>Melnor</strong><br><a href="https://www.homedepot.com/p/Melnor-Industrial-Pistol-Nozzle-229-855/100659525" target="_blank" rel="noreferrer">Industrial Pistol</a></td><td>Home Depot</td><td>$10.98</td><td>工业手枪式</td><td>与 Husky 同价，争夺清洁 / 强水流任务</td></tr>
+            <tr><td>19</td><td><strong>Kobalt</strong><br><a href="https://www.lowes.com/pd/Kobalt-1-Pattern-Adjustable-Nozzle/5015241079" target="_blank" rel="noreferrer">1-Pattern Adjustable</a></td><td>Lowe’s</td><td>$12.98</td><td>单水型可调 · 后扳机 · 锌</td><td><span class="chip green">1K+</span> 简洁高满意度路线</td></tr>
+            <tr><td>20</td><td><strong>Husky</strong><br><a href="https://www.homedepot.com/p/Husky-PRO-Rear-Trigger-Adjustable-Tip-Nozzle-622047/325874059" target="_blank" rel="noreferrer">PRO Rear Trigger Adjustable Tip</a></td><td>Home Depot</td><td>$14.98</td><td>后扳机 · 可调喷头</td><td>PRO 平台的单水型版本</td></tr>
+            <tr><td>21</td><td><strong>Husky</strong><br><a href="https://www.homedepot.com/p/Husky-PRO-Thumb-Control-Adjustable-Tip-Nozzle-622044/325874045" target="_blank" rel="noreferrer">PRO Thumb Control Adjustable Tip</a></td><td>Home Depot</td><td>$14.98</td><td>拇指控制 · 可调喷头</td><td>把单手控流延伸到简单水型</td></tr>
+            <tr><td>22</td><td><strong>Orbit</strong><br><a href="https://www.lowes.com/pd/Orbit-Max-1-Pattern-Nozzle/1000168327" target="_blank" rel="noreferrer">Max 1-Pattern</a></td><td>Lowe’s</td><td>$16.98</td><td>单水型可调</td><td><span class="chip green">1K+</span> 较高价仍可凭简单功能成立</td></tr>
+            <tr><td colspan="6" style="background:#fff1e6;color:#9b4c09;font-weight:800">C. 长杆 Wand：用柔和水型换取距离、角度和少弯腰（2 款）</td></tr>
+            <tr><td>23</td><td><strong>Melnor</strong><br><a href="https://www.homedepot.com/p/Melnor-8-Pattern-Soft-Touch-Watering-Wand-229-423/202051574" target="_blank" rel="noreferrer">8-Pattern Soft Touch Watering Wand</a></td><td>Home Depot</td><td>$12.98</td><td>Wand · 8 模式 · 舒适握把</td><td>吊篮、盆栽、花床；3,018 条评价</td></tr>
+            <tr><td>24</td><td><strong>Melnor</strong><br><a href="https://www.homedepot.com/p/Melnor-33-in-8-Pattern-Watering-Wand-442-599/202051576" target="_blank" rel="noreferrer">33 in. 8-Pattern Watering Wand</a></td><td>Home Depot</td><td>$14.98</td><td>33 in Wand · 8 模式 · 拇指控制</td><td>Best Seller；RelaxGrip；2,573 条评价</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="grid three" style="margin-top:18px">
+        <article class="card metric"><span class="tag">货架核心</span><span class="num">12 款</span><p>短柄多模式是最大单一簇，集中在 $7.98–19.98。5、7、8 模式都在卖，<strong>模式数量不是价格阶梯本身</strong>。</p></article>
+        <article class="card metric"><span class="tag">另一半需求</span><span class="num">10 款</span><p>单水型、可调、工业 / 清洁款几乎同样庞大：用户也会为<strong>强水流、耐用、热水、清洁附件和简单结构</strong>买单。</p></article>
+        <article class="card metric"><span class="tag">长杆不是例外</span><span class="num">2 款</span><p>样本仅有两款 Wand，但都在主流 $12.98–14.98 价位，并拥有 3,018 / 2,573 条评价；它是一个清晰场景分支。</p></article>
+      </div>
+    </section>
+
+    <section id="market">
+      <h2>合并样本给出的产品结构</h2>
+      <p class="sub">按 SKU 看，市场不是“低端水枪 vs 高端水枪”的一条线，而是三条并行的产品路线。渠道会改变品牌组合，但不改变这三种用户任务。</p>
+      <div class="grid three">
+        <article class="card archetype"><span class="chip green">路线 1 · 12 款</span><h3>多模式通用短枪</h3><p>旋转模式盘 + 金属 / 软胶 + 后扳机、前扳机或拇指控制，是最拥挤的主战场。卖点是“一把覆盖浇灌与冲洗”。</p><ul><li>模式要有可感知差异：mist / shower / cone / flat / jet。</li><li>操控方式才是更有价值的分层：后扳机、前扳机、拇指推杆。</li><li>$7.98 的高量款已把基础可靠性抬得很高。</li></ul></article>
+        <article class="card archetype blue"><span class="chip">路线 2 · 10 款</span><h3>简单、强劲、耐用的工具枪</h3><p>单水型 / 可调、Fireman’s、Industrial、Cleaning、Brass 并非边缘款。它们主动放弃模式数，换来流量、结构、热水适用或附件能力。</p><ul><li>低价也有金属、黄铜和可调结构。</li><li>PRO 平台用“多模式 / 可调 × 拇指 / 后扳机”做横向扩展。</li><li>这条路线最容易把 GardenScope 拖进“普通清洁枪”比较。</li></ul></article>
+        <article class="card archetype orange"><span class="chip orange">路线 3 · 2 款 + 扩展样本</span><h3>精细浇灌与触达型 Wand</h3><p>Wand 的核心不是“杆更长”，而是把水以合适的角度和强度送到吊篮、盆栽、深花坛，避免弯腰、踩入花床或冲散土。</p><ul><li>舒适握把、拇指控流、柔和 rain/shower 同等关键。</li><li>33 in 不是为了更强，而是为了更准、更省力。</li><li>这是 GardenScope 最值得验证的“看得清 + 够得到”机会。</li></ul></article>
+      </div>
+      <div class="matrix" role="table" aria-label="24款Nozzle合并样本的产品结构" style="margin-top:18px">
+        <div class="head">合并样本观察</div><div class="head">24 款 SKU 的证据</div><div class="head">对 GardenScope 的含义</div>
+        <div class="topic">价格阶梯</div><div>7 款 ≤$9.98；12 款在 $10.98–14.98；5 款在 $15.98–19.98。中位价 $12.98。</div><div>$69 必须越过“更好水枪”的性价比对比，展示水之外的即时结果。</div>
+        <div class="topic">模式数</div><div>14/24 是明确多模式，但 10 款简单 / 可调 / 清洁型也形成完整路线；5、7、8 模式并存。</div><div>不要用“更多模式”讲溢价；优先 4–5 个任务清晰、效果可区分的水型。</div>
+        <div class="topic">操控与可靠性</div><div>后扳机、前扳机、拇指控制均有成功 SKU；金属、橡胶、锁定、热水、螺纹附件是常规语言。</div><div>先做到不漏、好握、湿手可控；摄像头不能牺牲这些基础体验。</div>
+        <div class="topic">空间 / 植物场景</div><div>两款主流价位 Wand 直指吊篮、花床、盆栽；扩展样本覆盖 15–53 in。</div><div>15–24 in 视觉短杆值得与短枪型并行验证，而非默认做 36 in+ 超长杆。</div>
+      </div>
+      <div class="callout orange" style="margin-top:18px"><strong>渠道只保留为“背景变量”，不再拆开读：</strong>Lowe’s 的 10 款提供了可对照的销量分档；Home Depot 的 14 款补足了 PRO / Industrial 和 Wand 场景。合在一起后，最重要的结论反而更清晰：水枪市场同时服务通用浇灌、强力清洁和精细触达三种任务，GardenScope 应明确选择第三种机会，并把可靠浇水作为前两种路线共享的入场券。</div>
+      <div class="callout orange" style="margin-top:18px"><strong>一个重要反例：</strong>Orbit 的 $19.98 Fireman’s Nozzle 有大扳机、7 个模式、防锈卖点，却只有 4.1/5、64% 推荐。说明“更贵 + 更重 + 模式更多”并不能自动得到更高满意度；漏水、出水压力和早期失效会直接毁掉体验。</div>
+    </section>
+
+    <section id="consumers">
+      <h2>消费者对 Nozzle 的真实期待</h2>
+      <p class="sub">以下的质量主题主要来自 Lowe’s 产品页公开评分、推荐率与平台生成的评论摘要；Home Depot 页面则补充了高评价量的产品与明确功能主张。它们不是严格的全市场因果研究，但在同一零售场景中，足以识别高频的满意/不满主题。</p>
+      <div class="grid three">
+        <article class="card review good"><span class="chip green">高性价比样本</span><h3>“低价但不漏、不松、好握”</h3><p><strong>Project Source 7-Pattern</strong>：4.8/5，829 条评价，97% 推荐，$7.98。</p><p class="quote">正向主题集中于：模式足够、扳机顺、金属感结实、不漏水，且价值感高。它证明基础款也要把可靠性做到能被用户感知。</p><p class="small"><a href="https://www.lowes.com/pd/Project-Source-Project-Source-7-Pattern-Rear-Trigger-Nozzle/5016333181" target="_blank" rel="noreferrer">查看页面</a></p></article>
+        <article class="card review watch"><span class="chip orange">易用但有风险</span><h3>“一手控流，但不能越用越紧”</h3><p><strong>Orbit Max 8-Pattern</strong>：4.4/5，1,280 条评价，83% 推荐，$17.98。</p><p class="quote">拇指控流、金属机身、橡胶握把对握力有限人群友好；但一些评价提到推杆用久变紧。操作件的耐久性就是溢价是否成立的关键。</p><p class="small"><a href="https://www.lowes.com/pd/Orbit-Max-8-Pattern-Nozzle/1000188693" target="_blank" rel="noreferrer">查看页面</a></p></article>
+        <article class="card review good"><span class="chip green">少模式也成立</span><h3>“我不需要 8 个模式，只要稳定”</h3><p><strong>Kobalt 1-Pattern</strong>：4.7/5，113 条评价，94% 推荐，$12.98。</p><p class="quote">用户认可重型结构、舒适握把、扳机直觉和接口不漏。少数反馈模式有限，但整体满意度很高，体现了“任务清晰、性能稳定”的价值。</p><p class="small"><a href="https://www.lowes.com/pd/Kobalt-1-Pattern-Adjustable-Nozzle/5015241079" target="_blank" rel="noreferrer">查看页面</a></p></article>
+      </div>
+      <div class="grid two" style="margin-top:16px">
+        <article class="card"><h3>用户想得到的，不是抽象的“智能”</h3><ul><li><strong>水型真的不同：</strong>细雾不伤幼苗，jet 真能清洁，而不是多个相似的弱模式。</li><li><strong>一手就能精细调水：</strong>无需跑回水龙头；模式标签湿手也能看清、拨到位。</li><li><strong>连续浇水不累：</strong>握把防滑、扳机顺滑、有锁定；不要求长时间死捏。</li><li><strong>接上即用、关上不滴：</strong>通用接口、密封可靠，低价并不是漏水的免责理由。</li></ul></article>
+        <article class="card"><h3>用户最容易失望的四个瞬间</h3><ul><li><strong>漏：</strong>接口、转盘或关闭位置仍滴水；既浪费水，也让产品显得廉价。</li><li><strong>卡：</strong>拇指杆/扳机变紧，湿手打滑，模式盘难转或不定位。</li><li><strong>弱：</strong>jet 不够集中、压力不稳定；“清洁”承诺失效。</li><li><strong>早坏：</strong>跌落、日晒、季节性储存后出现破裂、腐蚀或转盘故障。</li></ul></article>
+      </div>
+      <div class="callout" style="margin-top:18px"><strong>24 款中的长杆佐证：</strong>Melnor $12.98 的 8-Pattern Soft Touch Wand 有 3,018 条评价；$14.98 的 33 in 8-Pattern Wand 有 2,573 条评价并标为 Best Seller。评价量不能直接当作销量，但至少说明“舒适握持 + 多模式 + 够得着”是主流、长期存在的真实购买场景，而不是小众园艺附件。</div>
+      <div class="callout plum" style="margin-top:18px"><strong>设计原则：</strong>模式数应是“任务覆盖”的结果，而不是包装正面的最大数字。建议把每个模式绑定为用户能理解的动作：幼苗、花坛、盆栽、冲洗；再检验这些水型是否在不同水压下仍有清晰差异。</div>
+    </section>
+
+    <section id="scope">
+      <h2>对 Giraffe Tools GardenScope 的直接启发</h2>
+      <p class="sub">内部资料定义的 GardenScope：手持水枪形态，喷头上方摄像头、屏幕面向用户；P0 是可靠浇水、触发抓图、植物/状态识别与养护记录，目标价约 $69。它的挑战在于：消费者首先会把它当作一把水枪来比较；但长杆类型也提供了一个更强的“看植物”机会。</p>
+      <div class="grid two">
+        <article class="card"><span class="chip plum">现有品牌基线</span><h3>Giraffe 已有 $25.99 的 9 模式 Nozzle</h3><p>当前 <a href="https://giraffetools.com/products/garden-hose-nozzle" target="_blank" rel="noreferrer">Giraffe Tools Garden Hose Nozzle</a> 已提供 9 种水型、后扳机锁定、流量控制、橡胶密封圈和 2 年满意度保修。它的价格已高于源表全部常规 SKU，产品页显示 54 条评价。</p><p><strong>含义：</strong>GardenScope 不能只被表达成“9 模式 + 摄像头”的加价款；它要售卖的是一次日常浇水自动留下了什么有用记录。</p></article>
+        <article class="card"><span class="chip plum">产品定位约束</span><h3>$69 必须越过“喷枪性价比”比较</h3><p>常规可用的锌合金多模式 Nozzle 在 $8–$20 已非常丰富。GardenScope 需要在货架、包装和首次演示中把购买理由从“喷水”迁移为：<strong>看植物、留下记录、得到下一步养护反馈</strong>。</p><p>它不是替代智能阀/流量计的自动化产品；首发不应承诺定时关水、精确用水量或病虫害硬件诊断。</p></article>
+      </div>
+
+      <div class="callout plum" style="margin-top:18px"><strong>长度是 GardenScope 的战略选择，不只是工业设计选择：</strong>短枪让摄像头、喷射方向和眼前植物天然接近，最适合先验证“浇水即记录”；15–24 in 的紧凑视觉短杆则可能把 GardenScope 的独特性放大到吊篮、盆栽和深花坛——用户既能把水送到位，也能在手柄屏幕上看到原本看不清的叶片。36 in 以上超长杆更有“远端查看”想象力，但机械力矩、水雾、镜头稳定、重心与收纳风险会同步放大。</div>
+      <p class="note" style="margin:12px 4px 0">合并样本强化了这一判断：$12.98 的 Melnor 8-Pattern Soft Touch Wand（3,018 条评价）和 $14.98 的 33 in 8-Pattern Wand（Best Seller，2,573 条评价）都在常规水枪的主流价位，而非昂贵小众附件。因此，“够得到 + 看得清”的视觉短杆有明确的场景基础；GardenScope 需要验证的只是摄像头、屏幕和水雾防护是否能把这份基础转成额外价值。</p>
+
+      <div class="grid three" style="margin-top:18px">
+        <article class="card"><span class="chip plum">形态假设 A</span><h3>短枪型：先把基础闭环做透</h3><p>适合多数日常浇灌/清洁任务，摄像头与水向同轴更易解释。优先验证“按下浇水 → 得到可用植物记录”，风险最集中在水雾、镜头窗和一手操作。</p></article>
+        <article class="card"><span class="chip plum">形态假设 B</span><h3>15–24 in 视觉短杆：值得优先测试</h3><p>针对吊篮、窗边盆栽、花坛内侧的“够不着也看不清”。这不是把短枪简单拉长，而是把<strong>精准浇灌 + 近端视觉检查</strong>做成一个可感知场景。</p></article>
+        <article class="card"><span class="chip plum">形态假设 C</span><h3>36 in+ 视觉长杆：作为后续方向</h3><p>高处/远端植物确实更需要视野，但长杆的转向头、屏幕与镜头供电/信号、杆身强度和收纳，都应先通过可用性与耐久样机验证，再决定是否产品化。</p></article>
+      </div>
+
+      <h3 style="margin-top:26px">产品定义：建议从这 5 个问题倒推</h3>
+      <div class="matrix" role="table" aria-label="GardenScope 设计启发矩阵">
+        <div class="head">问题</div><div class="head">Nozzle 市场已经证明</div><div class="head">GardenScope 应如何回应</div>
+        <div class="topic">1. 什么是基础体验？</div><div>不漏、出水稳定、手感好、清洁与浇灌都能用；这比模式数字更影响复购与评价。</div><div><strong>把喷射和密封放在智能功能之前。</strong>以同档或更高于优质锌合金水枪的标准验证扳机、接口、模式盘和跌落/日晒后的可靠性。</div>
+        <div class="topic">2. 要几个模式？</div><div>5 个有任务命名的模式可以支撑 $37.99 的高端产品；1 个可调模式也能获得高满意度。</div><div><strong>优先 4–5 个“看得懂、差得开”的水型。</strong>让屏幕/UI 同时告诉用户当前水型适合什么植物/任务，而不是复制 9 个图标。</div>
+        <div class="topic">3. 如何操控才顺手？</div><div>拇指控流减轻持续捏握；前扳机锁定也能减轻疲劳；但推杆/转盘老化会引起差评。</div><div><strong>把“浇水”和“抓图”设计成不互相抢手。</strong>至少验证单手握持、湿手操作、扳机锁定时是否遮挡屏幕或误碰拍摄控件。</div>
+        <div class="topic">4. 摄像头的核心难点？</div><div>常规 Nozzle 的细雾、shower、jet 都会造成水滴、反溅、叶片晃动；长杆还会带来杆身抖动与镜头离屏幕更远。用户不会为“低质量图片”付费。</div><div><strong>定义有效抓图时机。</strong>优先验证浇水前、浇水后或一次主动巡检的抓图，而非机械地在水雾最强的瞬间拍摄；镜头窗口需要抗水雾、耐刮、易清洁。</div>
+        <div class="topic">5. 为什么值 $69？</div><div>高价喷枪的证据来自耐用、低疲劳、可维护和长期保修；单靠功能堆叠不可靠。</div><div><strong>演示“水 → 植物画面 → 自动记录 → 一条可行动建议”的闭环。</strong>消费者应在第一次使用中就得到可见结果，而不是先学 App 或等待 AI。</div>
+      </div>
+
+      <div class="grid three" style="margin-top:18px">
+        <article class="card decision"><div class="n">01</div><div><h3>先做一把经得住对比的水枪</h3><p>与 $8–$20 样本同场对比：低/中/高水压下的模式辨识、关水不滴、握持疲劳、湿手旋钮与连接可靠性。</p></div></article>
+        <article class="card decision"><div class="n">02</div><div><h3>让镜头与水雾共存</h3><p>把有效成像率设为核心体验指标：不同水型、日照、风、叶片距离、镜头污渍后，抓图是否还可用于识别与记录。</p></div></article>
+        <article class="card decision"><div class="n">03</div><div><h3>把差异落在演示和包装</h3><p>门店演示不应先讲 AI 参数，而应展示一次浇水后屏幕出现植物缩略图与记录；再接 App 的历史变化和养护建议。</p></div></article>
+      </div>
+    </section>
+
+    <section id="sources">
+      <h2>来源、数据口径与下一步</h2>
+      <div class="grid two">
+        <article class="card"><h3>本报告使用的来源</h3><ul><li>用户提供的飞书表格《产品部要求 SKU 抓取表》，“Watering相关”页签：Lowe’s 10 款 + Home Depot 14 款 Nozzle 的源表价格、门店 / 销量字段与选品备注。</li><li>Lowe’s 对应商品页：产品结构、当前可见价格、评分、评价量、推荐率和评论摘要。重点页包括 <a href="https://www.lowes.com/pd/Project-Source-Project-Source-7-Pattern-Rear-Trigger-Nozzle/5016333181" target="_blank" rel="noreferrer">Project Source 7-Pattern</a>、<a href="https://www.lowes.com/pd/Orbit-Max-8-Pattern-Nozzle/1000188693" target="_blank" rel="noreferrer">Orbit Max 8</a>、<a href="https://www.lowes.com/pd/Kobalt-5-Pattern-Nozzle/5015241083" target="_blank" rel="noreferrer">Kobalt 5</a>、<a href="https://www.lowes.com/pd/Orbit-7-Pattern-Fireman-s-Nozzle/1002613212" target="_blank" rel="noreferrer">Orbit Fireman’s</a>。</li><li>Home Depot 重点页：<a href="https://www.homedepot.com/p/Husky-PRO-Thumb-Control-Multi-Pattern-Nozzle-622043/325874061" target="_blank" rel="noreferrer">Husky PRO Thumb</a>、<a href="https://www.homedepot.com/p/Husky-PRO-Fireman-s-Multi-Pattern-Nozzle-622045/325874050" target="_blank" rel="noreferrer">Husky PRO Fireman’s</a>、<a href="https://www.homedepot.com/p/Anvil-Rear-Trigger-Metal-Cleaning-Nozzle-875302-1006/326400065" target="_blank" rel="noreferrer">Anvil Cleaning</a>、<a href="https://www.homedepot.com/p/Melnor-8-Pattern-Soft-Touch-Watering-Wand-229-423/202051574" target="_blank" rel="noreferrer">Melnor Soft Touch Wand</a>、<a href="https://www.homedepot.com/p/Melnor-33-in-8-Pattern-Watering-Wand-442-599/202051576" target="_blank" rel="noreferrer">Melnor 33 in Wand</a>。</li><li>Lowe’s 长杆补充样本：<a href="https://www.lowes.com/pd/Project-Source-Gentle-Rain-Watering-Wand/5016370139" target="_blank" rel="noreferrer">Project Source 15 in</a>、<a href="https://www.lowes.com/pd/DRAMM-14805-Rain-Wand-30-in-One-Touch-Thumb-Valve-Blue/8870297" target="_blank" rel="noreferrer">DRAMM 30 in</a>、<a href="https://www.lowes.com/pd/Melnor-RelaxGrip-8-Pattern-Pattern-Wand/1000733980" target="_blank" rel="noreferrer">Melnor 33 in</a>、<a href="https://www.lowes.com/pd/AQUA-JOE-Telescoping-Watering-Wand-36-53-inch-Extendable-10-Spray-Patterns/5012956649" target="_blank" rel="noreferrer">Aqua Joe 36–53 in</a>。</li><li><a href="https://us.gardena.com/products/gardena-frost-proof-premium-metal-multi-sprayer-five-spray-patterns-water-stop" target="_blank" rel="noreferrer">GARDENA 官方产品页</a>：高端结构与可维护性对照。</li><li><a href="https://giraffetools.com/products/garden-hose-nozzle" target="_blank" rel="noreferrer">Giraffe Tools 官方 Nozzle 产品页</a>：现有品牌基线。</li><li>项目内《Watering智能品类_研究笔记.md》：GardenScope 的已确认定位、P0 能力与边界。</li></ul></article>
+        <article class="card"><h3>应如何继续研究</h3><ul><li><strong>买样拆解：</strong>至少取 $7.98 Project Source、$9.98 Orbit、$12.98 Kobalt、$14.98 Husky PRO、$14.98 Melnor 33 in Wand、$19.98 Fireman’s，对比水型、阀芯、密封、扳机行程、重量与杆身受力。</li><li><strong>任务测试：</strong>让真实用户分别浇幼苗、花坛、盆栽、吊篮、洗车/露台；记录选模式时间、手部疲劳、弯腰/伸手次数、溅水和主观“是否值钱”。</li><li><strong>GardenScope 原型测试：</strong>先测“有效图像率”和“抓图不打扰浇水”，再评估识别算法；短枪与 15–24 in 视觉短杆应同时测试，不要倒过来先堆 AI 需求。</li><li><strong>货架验证：</strong>在两类目标消费者面前同时陈列通用多模式枪、PRO 清洁枪、Wand 与 GardenScope，检验“植物记录 + 够得到 / 看得清”能否在第一眼建立明确区隔。</li></ul></article>
+      </div>
+      <p class="note" style="margin-top:16px">边界说明：源表销量是页面抓取时的分档信号，不能用于估算品类总销量或严格计算市场份额；零售价格、评分与库存会变动。电商规格页也出现过字段与标题不一致的情况，因此工程规格与售前承诺需要以实物和供应链文件复核。</p>
+    </section>
+  </main>
+  <footer><div class="wrap">Nozzle 品类研究 · 为 Giraffe Tools GardenScope 前置学习而作 · 2026-08-31</div></footer>
+</body>
+</html>
